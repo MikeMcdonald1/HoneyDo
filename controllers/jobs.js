@@ -1,22 +1,22 @@
 // routers decide WHERE to go, and controllers decide WHAT to do
 const getAllJobs = async (req, res) => {
-  res.send("get all jobs");
+  res.send("Get All Jobs");
 };
 
 const getJob = async (req, res) => {
-  res.send("get job");
+  res.send("Get Single Job");
 };
 
 const createJob = async (req, res) => {
-  res.send("create job");
+  res.json(req.user);
 };
 
 const updateJob = async (req, res) => {
-  res.send("updated job");
+  res.send("Updated Job");
 };
 
 const deleteJob = async (req, res) => {
-  res.send("delete job");
+  res.send("Delete Job");
 };
 
 module.exports = { getAllJobs, getJob, createJob, updateJob, deleteJob };
