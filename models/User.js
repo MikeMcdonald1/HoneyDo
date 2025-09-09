@@ -23,6 +23,11 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Please provide password"],
     minlength: 6,
   },
+  household: {
+    type: mongoose.Types.ObjectId,
+    ref: "Household",
+    required: true,
+  },
 });
 
 UserSchema.pre("save", async function () {
