@@ -1,4 +1,4 @@
-const mongooge = require("mongoose");
+const mongoose = require("mongoose");
 
 const JobSchema = new mongoose.Schema(
   {

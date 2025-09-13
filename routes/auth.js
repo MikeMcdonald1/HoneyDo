@@ -1,4 +1,3 @@
-// routers decide WHERE to go, and controllers decide WHAT to do
 const express = require("express");
 const router = express.Router();
 
