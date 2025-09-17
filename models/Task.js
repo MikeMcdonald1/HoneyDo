@@ -8,46 +8,67 @@ const TaskSchema = new mongoose.Schema(
       maxlength: 100,
       trim: true,
     },
-    createdBy: {
-      type: mongoose.Types.ObjectId,
-      ref: "User",
-      required: true,
-      immutable: true,
-    },
-    assignedTo: {
-      type: mongoose.Types.ObjectId,
-      ref: "User",
-      default: null, // for unassigned tasks
-      // required: [true, "Please provide the user that this task is assigned to"],
-    },
     householdId: {
-      type: mongoose.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Household",
       required: [true, "Household is required"],
+      index: true,
     },
-    dueDate: {
-      //for one off tasks like oil changes, vet visits
-      type: Date,
-      default: null,
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
-    dueDay: {
-      // for weekly tasks or when recurrence === "weekly"
-      type: Number,
-      min: 0,
-      max: 6,
-      default: null,
+    status: {
+      type: String,
+      enum: ["todo", "in-progress", "done", "skipped"],
+      default: "todo",
     },
+    assignees: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
     recurrence: {
       type: String,
-      enum: ["none", "daily", "weekly", "monthly"],
-      default: "none",
-    },
-    isDone: {
-      type: Boolean,
-      default: false,
+      enum: ["never", "daily", "weekly"],
+      default: "never",
     },
   },
   { timestamps: true }
 );
 
+TaskSchema.index({ householdId: 1, status: 1 });
+TaskSchema.index({ householdId: 1, assignees: 1 });
+
 module.exports = mongoose.model("Task", TaskSchema);
+
+// what about id?
+
+// add to model at later stage
+
+// dueDate: {
+//for one off tasks like oil changes, vet visits
+//   type: Date,
+//   default: null,
+// },
+// dueDay: {
+// for weekly tasks or when recurrence === "weekly"
+//   type: Number,
+//   min: 0,
+//   max: 6,
+//   default: null,
+// },
+
+// Probably not needed since status covers this part
+// completed: {
+//   type: Boolean,
+//   default: false,
+// },
+
+// assignmentScope: {
+//   type: String,
+//   enum: ["unassigned", "all", "specific"],
+//   default: "unassigned",
+// },

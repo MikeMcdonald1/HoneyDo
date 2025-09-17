@@ -24,7 +24,7 @@ const UserSchema = new mongoose.Schema({
     minlength: 6,
   },
   household: {
-    type: mongoose.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Household",
     required: true,
   },
