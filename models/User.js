@@ -30,11 +30,13 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
+// pre-save hook hashes user's pass using bcrypt beofre it's saved to db
 UserSchema.pre("save", async function () {
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
 
+// method generates JWT
 UserSchema.methods.createJWT = function () {
   return jwt.sign(
     { userId: this._id, name: this.name },
@@ -44,7 +46,7 @@ UserSchema.methods.createJWT = function () {
     }
   );
 };
-
+// method compares a user's login pass with the hashed pass store in the db, also uses bcrypt.compare
 UserSchema.methods.comparePassword = async function (candidatePassword) {
   const isMatch = await bcrypt.compare(candidatePassword, this.password);
   return isMatch;

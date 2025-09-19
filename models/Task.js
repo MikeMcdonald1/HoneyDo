@@ -39,9 +39,6 @@ const TaskSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-TaskSchema.index({ householdId: 1, status: 1 });
-TaskSchema.index({ householdId: 1, assignees: 1 });
-
 module.exports = mongoose.model("Task", TaskSchema);
 
 // what about id?

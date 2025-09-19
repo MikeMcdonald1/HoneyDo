@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const { UnauthenticatedError } = require("../errors/unauthenticated");
 
 const auth = async (req, res, next) => {
-  // check for header for authorization one, does it start with Bearer
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     throw new UnauthenticatedError("Authentication invalid");
@@ -12,7 +11,6 @@ const auth = async (req, res, next) => {
 
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
-    // attach the user to the job routes
     const user = User.findById(payload.id).select("-password");
     req.user = user;
 

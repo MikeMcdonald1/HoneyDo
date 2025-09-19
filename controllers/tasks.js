@@ -4,7 +4,6 @@ const { BadRequestError, NotFoundError } = require("../errors");
 
 // OLD John Smilga getAllTasks
 // const getAllTasks = async (req, res) => {
-//   console.log("User ID from token:", req.user.userId);
 //   const tasks = await Task.find({ createdBy: req.user.userId }).sort(
 //     "createdAt"
 //   );
