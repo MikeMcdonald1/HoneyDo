@@ -23,11 +23,6 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Please provide password"],
     minlength: 6,
   },
-  household: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Household",
-    required: true,
-  },
 });
 
 // pre-save hook hashes user's pass using bcrypt beofre it's saved to db

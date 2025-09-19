@@ -8,12 +8,6 @@ const TaskSchema = new mongoose.Schema(
       maxlength: 100,
       trim: true,
     },
-    householdId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Household",
-      required: [true, "Household is required"],
-      index: true,
-    },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
