@@ -15,11 +15,59 @@ export const handleAddEdit = () => {
   addingTask = document.getElementById("adding-task");
   const editCancel = document.getElementById("edit-cancel");
 
-  addEditDiv.addEventListener("click", (e) => {
+  //   addEditDiv.addEventListener("click", (e) => {
+  //     if (inputEnabled && e.target.nodeName === "BUTTON") {
+  //       if (e.target === addingTask) {
+  //         showTasks();
+  //       } else if (e.target === editCancel) {
+  //         showTasks();
+  //       }
+  //     }
+  //   });
+  // };
+
+  addEditDiv.addEventListener("click", async (e) => {
     if (inputEnabled && e.target.nodeName === "BUTTON") {
       if (e.target === addingTask) {
-        showTasks();
+        enableInput(false);
+
+        let method = "POST";
+        let url = "/api/v1/tasks";
+        try {
+          const response = await fetch(url, {
+            method: method,
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              title: title.value,
+              status: status.value,
+              recurrence: recurrence.value,
+            }),
+          });
+
+          const data = await response.json();
+          if (response.status === 201) {
+            // 201 indicates a successful create
+            message.textContent = "The task entry was created.";
+
+            title.value = "";
+            status.value = "";
+            recurrence.value = "never";
+
+            showTasks();
+          } else {
+            message.textContent = data.msg;
+          }
+        } catch (err) {
+          console.log(err);
+          message.textContent = "A communication error occurred.";
+        }
+
+        enableInput(true);
       } else if (e.target === editCancel) {
+        message.textContent = "";
         showTasks();
       }
     }
