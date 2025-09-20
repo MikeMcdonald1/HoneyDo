@@ -22,6 +22,12 @@ export const handleAddEdit = () => {
 
         let method = "POST";
         let url = "/api/v1/tasks";
+
+        if (addingTask.textContent === "update") {
+          method = "PATCH";
+          url = `/api/v1/tasks/${addEditDiv.dataset.id}`;
+        }
+
         try {
           const response = await fetch(url, {
             method: method,
@@ -37,13 +43,18 @@ export const handleAddEdit = () => {
           });
 
           const data = await response.json();
-          if (response.status === 201) {
-            message.textContent = "The task entry was created.";
+          if (response.status === 200 || response.status === 201) {
+            if (response.status === 200) {
+              // a 200 is expected for a successful update
+              message.textContent = "The task entry was updated.";
+            } else {
+              // a 201 is expected for a successful create
+              message.textContent = "The task entry was created.";
+            }
 
             title.value = "";
             status.value = "";
-            recurrence.value = "never";
-
+            recurrence.value = "pending";
             showTasks();
           } else {
             message.textContent = data.msg;
@@ -52,11 +63,7 @@ export const handleAddEdit = () => {
           console.log(err);
           message.textContent = "A communication error occurred.";
         }
-
         enableInput(true);
-      } else if (e.target === editCancel) {
-        message.textContent = "";
-        showTasks();
       }
     }
   });
