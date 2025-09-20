@@ -2,7 +2,6 @@ import { enableInput, inputEnabled, message, setDiv, token } from "./index.js";
 import { showTasks } from "./tasks.js";
 
 let addEditDiv = null;
-let company = null;
 let title = null;
 let status = null;
 let recurrence = null;
@@ -10,7 +9,7 @@ let addingTask = null;
 
 export const handleAddEdit = () => {
   addEditDiv = document.getElementById("edit-task");
-  company = document.getElementById("title");
+  title = document.getElementById("title");
   status = document.getElementById("status");
   recurrence = document.getElementById("recurrence");
   addingTask = document.getElementById("adding-task");
