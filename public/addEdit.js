@@ -15,17 +15,6 @@ export const handleAddEdit = () => {
   addingTask = document.getElementById("adding-task");
   const editCancel = document.getElementById("edit-cancel");
 
-  //   addEditDiv.addEventListener("click", (e) => {
-  //     if (inputEnabled && e.target.nodeName === "BUTTON") {
-  //       if (e.target === addingTask) {
-  //         showTasks();
-  //       } else if (e.target === editCancel) {
-  //         showTasks();
-  //       }
-  //     }
-  //   });
-  // };
-
   addEditDiv.addEventListener("click", async (e) => {
     if (inputEnabled && e.target.nodeName === "BUTTON") {
       if (e.target === addingTask) {
@@ -49,7 +38,6 @@ export const handleAddEdit = () => {
 
           const data = await response.json();
           if (response.status === 201) {
-            // 201 indicates a successful create
             message.textContent = "The task entry was created.";
 
             title.value = "";
@@ -74,7 +62,48 @@ export const handleAddEdit = () => {
   });
 };
 
-export const showAddEdit = (task) => {
-  message.textContent = "";
-  setDiv(addEditDiv);
+export const showAddEdit = async (taskId) => {
+  if (!taskId) {
+    title.value = "";
+    status.value = "";
+    recurrence.value = "pending";
+    addingTask.textContent = "add";
+    message.textContent = "";
+
+    setDiv(addEditDiv);
+  } else {
+    enableInput(false);
+
+    try {
+      const response = await fetch(`/api/v1/tasks/${taskId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await response.json();
+      if (response.status === 200) {
+        title.value = data.task.title;
+        status.value = data.task.status;
+        recurrence.value = data.task.recurrence;
+        addingTask.textContent = "update";
+        message.textContent = "";
+        addEditDiv.dataset.id = taskId;
+
+        setDiv(addEditDiv);
+      } else {
+        // might happen if the list has been updated since last display
+        message.textContent = "The tasks entry was not found";
+        showTasks();
+      }
+    } catch (err) {
+      console.log(err);
+      message.textContent = "A communications error has occurred.";
+      showTasks();
+    }
+
+    enableInput(true);
+  }
 };

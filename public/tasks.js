@@ -29,6 +29,9 @@ export const handleTasks = () => {
         message.textContent = "You have been logged off.";
         tasksTable.replaceChildren([tasksTableHeader]);
         showLoginRegister();
+      } else if (e.target.classList.contains("editButton")) {
+        message.textContent = "";
+        showAddEdit(e.target.dataset.id);
       }
     }
   });
