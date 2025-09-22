@@ -54,7 +54,7 @@ export const handleAddEdit = () => {
 
             title.value = "";
             status.value = "";
-            recurrence.value = "pending";
+            recurrence.value = "";
             showTasks();
           } else {
             message.textContent = data.msg;
@@ -73,7 +73,7 @@ export const showAddEdit = async (taskId) => {
   if (!taskId) {
     title.value = "";
     status.value = "";
-    recurrence.value = "pending";
+    recurrence.value = "";
     addingTask.textContent = "add";
     message.textContent = "";
 
