@@ -26,8 +26,8 @@ const TaskSchema = new mongoose.Schema(
     ],
     recurrence: {
       type: String,
-      enum: ["never", "daily", "weekly"],
-      default: "never",
+      enum: ["once", "daily", "weekly"],
+      default: "once",
     },
   },
   { timestamps: true }
