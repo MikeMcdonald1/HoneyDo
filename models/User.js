@@ -6,24 +6,30 @@ const UserSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "Please provide name"],
+    trim: true,
     minlength: 3,
     maxlength: 50,
   },
   email: {
     type: String,
     required: [true, "Please provide email"],
+    trim: true,
+    unique: true,
+    lowercase: true,
     match: [
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       "Please provide valid email",
     ],
-    unique: true,
   },
   password: {
     type: String,
     required: [true, "Please provide password"],
-    minlength: 6,
+    minlength: [6, "Passwords need to be at least 6 characters"],
   },
 });
+
+// createdAt??
+// updatedAt?? runValidators??
 
 // pre-save hook hashes user's pass using bcrypt beofre it's saved to db
 UserSchema.pre("save", async function () {
