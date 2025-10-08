@@ -60,6 +60,7 @@
       <table id="tasks-table">
         <tr id="tasks-table-header">
           <th>Title</th>
+          <th>Category</th>
           <th>Status</th>
           <th>Recurrence</th>
           <th colspan="2"></th>
@@ -77,6 +78,16 @@
         </div>
 
         <div>
+          <label for="category">Category:</label>
+          <select id="category">
+            <option value="tasks">tasks</option>
+            <option value="chores">chores</option>
+            <option value="errands">errands</option>
+            <option value="random">random</option>
+          </select>
+        </div>
+
+        <div>
           <label for="status">Status:</label>
           <select id="status">
             <option value="todo">todo</option>
@@ -89,7 +100,7 @@
         <div>
           <label for="recurrence">Recurrence:</label>
           <select id="recurrence">
-            <option value="never">never</option>
+            <option value="once">once</option>
             <option value="daily">daily</option>
             <option value="weekly">weekly</option>
           </select>

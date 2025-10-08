@@ -75,6 +75,7 @@ export const showTasks = async () => {
           let deleteButton = `<td><button type="button" class="deleteButton" data-id=${data.tasks[i]._id}>delete</button></td>`;
           let rowHTML = `
             <td>${data.tasks[i].title}</td>
+            <td>${data.tasks[i].category}</td>
             <td>${data.tasks[i].status}</td>
             <td>${data.tasks[i].recurrence}</td>
             <div>${editButton}${deleteButton}</div>`;

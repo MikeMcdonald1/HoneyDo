@@ -3,6 +3,7 @@ import { showTasks } from "./tasks.js";
 
 let addEditDiv = null;
 let title = null;
+let category = null;
 let status = null;
 let recurrence = null;
 let addingTask = null;
@@ -10,6 +11,7 @@ let addingTask = null;
 export const handleAddEdit = () => {
   addEditDiv = document.getElementById("edit-task");
   title = document.getElementById("title");
+  category = document.getElementById("category");
   status = document.getElementById("status");
   recurrence = document.getElementById("recurrence");
   addingTask = document.getElementById("adding-task");
@@ -37,6 +39,7 @@ export const handleAddEdit = () => {
             },
             body: JSON.stringify({
               title: title.value,
+              category: category.value,
               status: status.value,
               recurrence: recurrence.value,
             }),
@@ -53,6 +56,7 @@ export const handleAddEdit = () => {
             }
 
             title.value = "";
+            category.value = "";
             status.value = "";
             recurrence.value = "";
             showTasks();
@@ -75,6 +79,7 @@ export const handleAddEdit = () => {
 export const showAddEdit = async (taskId) => {
   if (!taskId) {
     title.value = "";
+    category.value = "";
     status.value = "";
     recurrence.value = "";
     addingTask.textContent = "add";
@@ -96,6 +101,7 @@ export const showAddEdit = async (taskId) => {
       const data = await response.json();
       if (response.status === 200) {
         title.value = data.task.title;
+        category.value = data.task.category;
         status.value = data.task.status;
         recurrence.value = data.task.recurrence;
         addingTask.textContent = "update";

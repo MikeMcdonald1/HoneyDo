@@ -14,22 +14,26 @@ const TaskSchema = new mongoose.Schema(
       required: true,
       immutable: true,
     },
+    category: {
+      type: String,
+      enum: ["tasks", "errands", "chores", "random"],
+    },
     status: {
       type: String,
       enum: ["todo", "in-progress", "done", "skipped"],
       default: "todo",
     },
-    assignees: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
-    recurrence: {
-      type: String,
-      enum: ["once", "daily", "weekly"],
-      default: "once",
-    },
+    // assignees: [
+    //   {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "User",
+    //   },
+    // ],
+    // recurrence: {
+    //   type: String,
+    //   enum: ["once", "daily", "weekly"],
+    //   default: "once",
+    // },
   },
   { timestamps: true }
 );
