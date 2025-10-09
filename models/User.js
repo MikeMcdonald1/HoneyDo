@@ -26,6 +26,16 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Please provide password"],
     minlength: [6, "Passwords need to be at least 6 characters"],
   },
+  householdId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Household",
+    default: null,
+  },
+  role: {
+    type: String,
+    enum: ["owner", "member"],
+    default: "member",
+  },
 });
 
 // createdAt??
