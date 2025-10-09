@@ -24,16 +24,6 @@ export const handleRegister = () => {
   const registerButton = document.getElementById("register-button");
   const registerCancel = document.getElementById("register-cancel");
 
-  // registerDiv.addEventListener("click", (e) => {
-  //   if (inputEnabled && e.target.nodeName === "BUTTON") {
-  //     if (e.target === registerButton) {
-  //       showTasks();
-  //     } else if (e.target === registerCancel) {
-  //       showLoginRegister();
-  //     }
-  //   }
-  // });
-
   registerDiv.addEventListener("click", async (e) => {
     if (inputEnabled && e.target.nodeName === "BUTTON") {
       if (e.target === registerButton) {

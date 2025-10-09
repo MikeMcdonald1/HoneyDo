@@ -38,7 +38,7 @@ const HouseholdSchema = new mongoose.Schema(
 );
 
 HouseholdSchema.pre("validate", function () {
-  if (!this.joinCode) this.joinCode = genCode(6);
+  if (!this.joinCode) this.joinCode = genJoinCode(6);
 });
 
 module.exports = mongoose.model("Household", HouseholdSchema);
