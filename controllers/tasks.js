@@ -42,7 +42,7 @@ const updateTask = async (req, res) => {
     throw new BadRequestError("Company or Position fields cannot be empty");
   }
 
-  const task = await Task.findByIdAndUpdate(
+  const task = await Task.findOneAndUpdate(
     { _id: taskId, createdBy: userId },
     req.body,
     { new: true, runValidators: true }
@@ -53,6 +53,8 @@ const updateTask = async (req, res) => {
   }
   res.status(StatusCodes.OK).json({ task });
 };
+
+// Should I change NotFoundError message to "task doesn't belong to user" or something?
 
 const deleteTask = async (req, res) => {
   const {

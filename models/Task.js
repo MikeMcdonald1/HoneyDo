@@ -29,10 +29,15 @@ const TaskSchema = new mongoose.Schema(
     //     ref: "User",
     //   },
     // ],
-    // recurrence: {
+    recurrence: {
+      type: String,
+      enum: ["once", "daily", "weekly"],
+      default: "once",
+    },
+    // comment: {
     //   type: String,
-    //   enum: ["once", "daily", "weekly"],
-    //   default: "once",
+    //   maxlength: 1000,
+    //   trim: true,
     // },
   },
   { timestamps: true }
