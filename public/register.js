@@ -24,12 +24,21 @@ export const handleRegister = () => {
   const registerButton = document.getElementById("register-button");
   const registerCancel = document.getElementById("register-cancel");
 
-  const createHousehold = document.getElementById("createHousehold");
-  const joinHousehold = document.getElementById("joinHousehold");
+  const radios = document.querySelectorAll("input[name='household']");
   const joinHouseholdText = document.getElementById("joinHouseholdText");
   const joinHouseholdTextContainer = document.getElementById(
     "joinHouseholdTextContainer"
   );
+  radios.forEach((radio) => {
+    radio.addEventListener("change", (e) => {
+      const value = e.target.value;
+      if (value === "createHousehold") {
+        joinHouseholdTextContainer.hidden = true;
+      } else {
+        joinHouseholdTextContainer.hidden = false;
+      }
+    });
+  });
 
   registerDiv.addEventListener("click", async (e) => {
     if (inputEnabled && e.target.nodeName === "BUTTON") {
