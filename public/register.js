@@ -14,6 +14,7 @@ let name = null;
 let email1 = null;
 let password1 = null;
 let password2 = null;
+let joinHouseholdText = null;
 
 export const handleRegister = () => {
   registerDiv = document.getElementById("register-div");
@@ -21,11 +22,11 @@ export const handleRegister = () => {
   email1 = document.getElementById("email1");
   password1 = document.getElementById("password1");
   password2 = document.getElementById("password2");
+  joinHouseholdText = document.getElementById("joinHouseholdText");
   const registerButton = document.getElementById("register-button");
   const registerCancel = document.getElementById("register-cancel");
 
   const radios = document.querySelectorAll("input[name='household']");
-  const joinHouseholdText = document.getElementById("joinHouseholdText");
   const joinHouseholdTextContainer = document.getElementById(
     "joinHouseholdTextContainer"
   );
@@ -58,6 +59,7 @@ export const handleRegister = () => {
                 name: name.value,
                 email: email1.value,
                 password: password1.value,
+                joinCode: joinHouseholdText.value,
               }),
             });
 
@@ -70,6 +72,7 @@ export const handleRegister = () => {
               email1.value = "";
               password1.value = "";
               password2.value = "";
+              joinHouseholdText.value = "";
 
               showTasks();
             } else {
@@ -87,6 +90,7 @@ export const handleRegister = () => {
         email1.value = "";
         password1.value = "";
         password2.value = "";
+        joinHouseholdText.value = "";
         showLoginRegister();
       }
     }
@@ -97,5 +101,6 @@ export const showRegister = () => {
   email1.value = null;
   password1.value = null;
   password2.value = null;
+  joinHouseholdText.value = null;
   setDiv(registerDiv);
 };
