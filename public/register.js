@@ -24,6 +24,13 @@ export const handleRegister = () => {
   const registerButton = document.getElementById("register-button");
   const registerCancel = document.getElementById("register-cancel");
 
+  const createHousehold = document.getElementById("createHousehold");
+  const joinHousehold = document.getElementById("joinHousehold");
+  const joinHouseholdText = document.getElementById("joinHouseholdText");
+  const joinHouseholdTextContainer = document.getElementById(
+    "joinHouseholdTextContainer"
+  );
+
   registerDiv.addEventListener("click", async (e) => {
     if (inputEnabled && e.target.nodeName === "BUTTON") {
       if (e.target === registerButton) {
