@@ -5,6 +5,7 @@ import {
   setToken,
   token,
   enableInput,
+  setHouseholdInfo,
 } from "./index.js";
 import { showLoginRegister } from "./loginRegister.js";
 import { showAddEdit } from "./addEdit.js";
@@ -27,6 +28,7 @@ export const handleTasks = () => {
         showAddEdit(null);
       } else if (e.target === logoff) {
         setToken(null);
+        setHouseholdInfo(null);
         message.textContent = "You have been logged off.";
         // tasksTable.replaceChildren([tasksTableHeader]);
         tasksTable.replaceChildren(tasksTableHeader);

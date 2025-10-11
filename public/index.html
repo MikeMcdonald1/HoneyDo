@@ -9,10 +9,15 @@
 
   <body>
     <h1>Task List</h1>
+    <p id="household-summary">
+      <span id="household-name"></span>
+      <span aria-hidden="true">|</span>
+      Join Code: <span id="household-code"></span>
     <hr />
     <p id="message"></p>
     <hr />
 
+    <!-- Login -->
     <div id="login-register" style="display: none">
       <button type="button" id="login">login</button>
       <button type="button" id="register">register</button>
@@ -34,6 +39,7 @@
       </form>
     </div>
 
+     <!-- Register -->
     <div id="register-div" style="display: none">
       <form>
         <div>
@@ -75,7 +81,7 @@
           type="text"
           id="joinHouseholdText"
           name="joinHouseholdText"
-          placeholder="e.g. SIXDIG"
+          placeholder="e.g. 5NPQ42"
         />
       </div>
         <button type="button" id="register-button">register</button>
@@ -83,6 +89,7 @@
       </form>
     </div>
 
+     <!-- Tasks -->
     <div id="tasks" style="display: none">
       <p id="tasks-message"></p>
       <table id="tasks-table">
