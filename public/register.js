@@ -5,6 +5,7 @@ import {
   token,
   enableInput,
   setToken,
+  setHouseholdInfo,
 } from "./index.js";
 import { showLoginRegister } from "./loginRegister.js";
 import { showTasks } from "./tasks.js";
@@ -67,6 +68,7 @@ export const handleRegister = () => {
             if (response.status === 201) {
               message.textContent = `Registration successful.  Welcome ${data.user.name}`;
               setToken(data.token);
+              setHouseholdInfo(data.household);
 
               name.value = "";
               email1.value = "";

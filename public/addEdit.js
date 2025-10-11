@@ -5,7 +5,6 @@ let addEditDiv = null;
 let title = null;
 let category = null;
 let status = null;
-let recurrence = null;
 let addingTask = null;
 
 export const handleAddEdit = () => {
@@ -13,7 +12,6 @@ export const handleAddEdit = () => {
   title = document.getElementById("title");
   category = document.getElementById("category");
   status = document.getElementById("status");
-  recurrence = document.getElementById("recurrence");
   addingTask = document.getElementById("adding-task");
   const editCancel = document.getElementById("edit-cancel");
 
@@ -41,7 +39,6 @@ export const handleAddEdit = () => {
               title: title.value,
               category: category.value,
               status: status.value,
-              recurrence: recurrence.value,
             }),
           });
 
@@ -58,7 +55,6 @@ export const handleAddEdit = () => {
             title.value = "";
             category.value = "";
             status.value = "";
-            recurrence.value = "";
             showTasks();
           } else {
             message.textContent = data.msg;
@@ -81,7 +77,6 @@ export const showAddEdit = async (taskId) => {
     title.value = "";
     category.value = "";
     status.value = "";
-    recurrence.value = "";
     addingTask.textContent = "add";
     message.textContent = "";
 
@@ -103,14 +98,12 @@ export const showAddEdit = async (taskId) => {
         title.value = data.task.title;
         category.value = data.task.category;
         status.value = data.task.status;
-        recurrence.value = data.task.recurrence;
         addingTask.textContent = "update";
         message.textContent = "";
         addEditDiv.dataset.id = taskId;
 
         setDiv(addEditDiv);
       } else {
-        // might happen if the list has been updated since last display
         message.textContent = "The tasks entry was not found";
         showTasks();
       }

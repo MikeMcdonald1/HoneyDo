@@ -29,11 +29,6 @@ const TaskSchema = new mongoose.Schema(
     //     ref: "User",
     //   },
     // ],
-    recurrence: {
-      type: String,
-      enum: ["once", "daily", "weekly"],
-      default: "once",
-    },
     // comment: {
     //   type: String,
     //   maxlength: 1000,
@@ -44,32 +39,3 @@ const TaskSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Task", TaskSchema);
-
-// what about id?
-
-// add to model at later stage
-
-// dueDate: {
-//for one off tasks like oil changes, vet visits
-//   type: Date,
-//   default: null,
-// },
-// dueDay: {
-// for weekly tasks or when recurrence === "weekly"
-//   type: Number,
-//   min: 0,
-//   max: 6,
-//   default: null,
-// },
-
-// Probably not needed since status covers this part
-// completed: {
-//   type: Boolean,
-//   default: false,
-// },
-
-// assignmentScope: {
-//   type: String,
-//   enum: ["unassigned", "all", "specific"],
-//   default: "unassigned",
-// },

@@ -1,7 +1,11 @@
 const User = require("../models/User");
 const Household = require("../models/Household");
 const { StatusCodes } = require("http-status-codes");
-const { BadRequestError, UnauthenticatedError } = require("../errors");
+const {
+  BadRequestError,
+  UnauthenticatedError,
+  NotFoundError,
+} = require("../errors");
 
 const register = async (req, res) => {
   const { joinCode, ...userBody } = req.body;
@@ -53,7 +57,18 @@ const login = async (req, res) => {
   }
 
   const token = user.createJWT();
-  res.status(StatusCodes.OK).json({ user: { name: user.name }, token });
+  let household = null;
+  if (user.householdId) {
+    household = await Household.findById(user.householdId).lean();
+  }
+
+  const householdResponse = household
+    ? { name: household.name, joinCode: household.joinCode }
+    : null;
+
+  res
+    .status(StatusCodes.OK)
+    .json({ user: { name: user.name }, token, household: householdResponse });
 };
 
 module.exports = { register, login };
