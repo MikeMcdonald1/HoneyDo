@@ -42,7 +42,7 @@ export const handleLogin = () => {
           if (response.status === 200) {
             message.textContent = `Login successful.  Welcome ${data.user.name}`;
             setToken(data.token);
-            setHouseholdInfo(data.household ?? null);
+            setHouseholdInfo(data.household);
 
             email.value = "";
             password.value = "";

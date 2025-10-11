@@ -68,7 +68,7 @@ export const handleRegister = () => {
             if (response.status === 201) {
               message.textContent = `Registration successful.  Welcome ${data.user.name}`;
               setToken(data.token);
-              setHouseholdInfo(data.household ?? null);
+              setHouseholdInfo(data.household);
 
               name.value = "";
               email1.value = "";
