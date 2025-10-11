@@ -43,6 +43,7 @@ const UserSchema = new mongoose.Schema({
 
 // pre-save hook hashes user's pass using bcrypt beofre it's saved to db
 UserSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
