@@ -1,11 +1,40 @@
 const User = require("../models/User");
+const Household = require("../models/Household");
 const { StatusCodes } = require("http-status-codes");
 const { BadRequestError, UnauthenticatedError } = require("../errors");
 
 const register = async (req, res) => {
-  const user = await User.create({ ...req.body });
+  const { joinCode, ...userBody } = req.body;
+  const user = await User.create({ ...userBody });
+
+  let household = null;
+
+  // if there is a joinCode, try to find existing household, if found assign household to newly created user
+  // otherwise create household
+  if (joinCode) {
+    household = await Household.findOne({
+      joinCode: joinCode,
+    });
+    if (!household) {
+      throw new NotFoundError(`No household with joinCode ${joinCode}`);
+    }
+    user.role = "member";
+  } else {
+    household = await Household.create({
+      name: `${user.name}'s household`,
+      createdBy: user._id,
+    });
+    user.role = "owner";
+  }
+
+  user.householdId = household._id;
+  await user.save();
   const token = user.createJWT();
-  res.status(StatusCodes.CREATED).json({ user: { name: user.name }, token });
+  res.status(StatusCodes.CREATED).json({
+    user: { name: user.name },
+    token,
+    household: { name: household.name, joinCode: household.joinCode },
+  });
 };
 
 const login = async (req, res) => {

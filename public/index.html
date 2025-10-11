@@ -50,6 +50,34 @@
           <label for="password2">verify password:</label>
           <input type="password" id="password2" />
         </div>
+        <div>
+          <label for="createHousehold">Create New Household</label>
+          <input
+            id="createHousehold"
+            type="radio"
+            name="household"
+            value="createHousehold"
+            checked
+          />
+          <br>
+          <label for="joinHousehold">Join Existing Household</label>
+          <input
+            id="joinHousehold"
+            type="radio"
+            name="household"
+            value="joinHousehold"
+          />
+        </div>
+        <div id="joinHouseholdTextContainer" hidden>       
+          <label
+          for="joinHouseholdText">Household Code</lable>
+          <input
+          type="text"
+          id="joinHouseholdText"
+          name="joinHouseholdText"
+          placeholder="e.g. SIXDIG"
+        />
+      </div>
         <button type="button" id="register-button">register</button>
         <button type="button" id="register-cancel">cancel</button>
       </form>

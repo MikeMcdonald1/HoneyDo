@@ -23,6 +23,7 @@ const taskRouter = require("./routes/tasks");
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
+// security
 app.set("trust proxy", 1);
 app.use(
   rateLimiter({
