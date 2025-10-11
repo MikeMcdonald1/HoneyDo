@@ -79,7 +79,6 @@ export const showTasks = async () => {
             <td>${data.tasks[i].title}</td>
             <td>${data.tasks[i].category}</td>
             <td>${data.tasks[i].status}</td>
-            <td>${data.tasks[i].recurrence}</td>
             <div>${editButton}${deleteButton}</div>`;
 
           rowEntry.innerHTML = rowHTML;

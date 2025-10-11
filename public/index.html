@@ -9,10 +9,10 @@
 
   <body>
     <h1>Task List</h1>
-    <p id="household-summary">
+    <!-- <p id="household-summary">
       <span id="household-name"></span>
       <span aria-hidden="true">|</span>
-      Join Code: <span id="household-code"></span>
+      Join Code: <span id="household-code"></span> -->
     <hr />
     <p id="message"></p>
     <hr />
@@ -91,13 +91,16 @@
 
      <!-- Tasks -->
     <div id="tasks" style="display: none">
+          <p id="household-summary">
+      <span id="household-name"></span>
+      <span aria-hidden="true">|</span>
+      Join Code: <span id="household-code"></span>
       <p id="tasks-message"></p>
       <table id="tasks-table">
         <tr id="tasks-table-header">
           <th>Title</th>
           <th>Category</th>
           <th>Status</th>
-          <th>Recurrence</th>
           <th colspan="2"></th>
         </tr>
       </table>
@@ -129,15 +132,6 @@
             <option value="in-progress">in-progress</option>
             <option value="done">done</option>
             <option value="skipped">skipped</option>
-          </select>
-        </div>
-
-        <div>
-          <label for="recurrence">Recurrence:</label>
-          <select id="recurrence">
-            <option value="once">once</option>
-            <option value="daily">daily</option>
-            <option value="weekly">weekly</option>
           </select>
         </div>
 
