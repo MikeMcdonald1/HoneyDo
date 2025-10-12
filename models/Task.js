@@ -29,10 +29,11 @@ const TaskSchema = new mongoose.Schema(
       enum: ["todo", "in-progress", "done", "skipped"],
       default: "todo",
     },
-    // assignees: [
+    // assignedTo: [
     //   {
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: "User",
+    //     required: true,
     //   },
     // ],
     // comment: {
