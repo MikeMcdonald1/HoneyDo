@@ -30,13 +30,11 @@ export const handleTasks = () => {
         setToken(null);
         setHouseholdInfo(null);
         message.textContent = "You have been logged off.";
-        // tasksTable.replaceChildren([tasksTableHeader]);
         tasksTable.replaceChildren(tasksTableHeader);
         showLoginRegister();
       } else if (e.target.classList.contains("editButton")) {
         message.textContent = "";
         showAddEdit(e.target.dataset.id);
-        // step 1 - handle clicks on the delete button
       } else if (e.target.classList.contains("deleteButton")) {
         message.textContent = "";
         handleDelete(e.target.dataset.id);
@@ -55,6 +53,7 @@ export const showTasks = async () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        // token might need to be changed to work with household instead of single user
         Authorization: `Bearer ${token}`,
       },
     });
@@ -118,6 +117,7 @@ export const handleDelete = async (id) => {
     } else {
       message.textContent = data.msg;
     }
+    // if delete is not successful do this
   } catch (err) {
     console.log(err);
     message.textContent = "Failed to delete task.";

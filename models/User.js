@@ -2,44 +2,44 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const UserSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Please provide name"],
-    trim: true,
-    minlength: 3,
-    maxlength: 50,
+const UserSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "Please provide name"],
+      trim: true,
+      minlength: 3,
+      maxlength: 50,
+    },
+    email: {
+      type: String,
+      required: [true, "Please provide email"],
+      trim: true,
+      unique: true,
+      lowercase: true,
+      match: [
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        "Please provide valid email",
+      ],
+    },
+    password: {
+      type: String,
+      required: [true, "Please provide password"],
+      minlength: [6, "Passwords need to be at least 6 characters"],
+    },
+    householdId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Household",
+      default: null,
+    },
+    role: {
+      type: String,
+      enum: ["owner", "member"],
+      default: "member",
+    },
   },
-  email: {
-    type: String,
-    required: [true, "Please provide email"],
-    trim: true,
-    unique: true,
-    lowercase: true,
-    match: [
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-      "Please provide valid email",
-    ],
-  },
-  password: {
-    type: String,
-    required: [true, "Please provide password"],
-    minlength: [6, "Passwords need to be at least 6 characters"],
-  },
-  householdId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Household",
-    default: null,
-  },
-  role: {
-    type: String,
-    enum: ["owner", "member"],
-    default: "member",
-  },
-});
-
-// createdAt??
-// updatedAt?? runValidators??
+  { timestamps: true }
+);
 
 // pre-save hook hashes user's pass using bcrypt beofre it's saved to db
 UserSchema.pre("save", async function () {
