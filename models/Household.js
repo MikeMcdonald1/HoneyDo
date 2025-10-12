@@ -41,10 +41,3 @@ HouseholdSchema.pre("validate", function () {
 });
 
 module.exports = mongoose.model("Household", HouseholdSchema);
-
-// Add ownerId
-// Add joinCode
-// Should it be createdBy or createdAt??
-// Should I add ownerId for the user that creates the Household? How is that diff from createdBy?
-// How to implement this? New user creates new household || New user joins existing household with join code
-// Bigger Picture: Can existing user join multiple households? Can existing user create multiple households?

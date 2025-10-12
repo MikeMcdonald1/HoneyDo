@@ -14,6 +14,12 @@ const TaskSchema = new mongoose.Schema(
       required: true,
       immutable: true,
     },
+    // householdId: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "Household",
+    //   required: true,
+    //   immutable: true,
+    // },
     category: {
       type: String,
       enum: ["tasks", "errands", "chores", "random"],
@@ -23,10 +29,11 @@ const TaskSchema = new mongoose.Schema(
       enum: ["todo", "in-progress", "done", "skipped"],
       default: "todo",
     },
-    // assignees: [
+    // assignedTo: [
     //   {
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: "User",
+    //     required: true,
     //   },
     // ],
     // comment: {
