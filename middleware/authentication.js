@@ -13,8 +13,14 @@ const auth = async (req, res, next) => {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
     const user = User.findById(payload.id).select("-password");
     req.user = user;
+    console.log("payload:", payload);
 
-    req.user = { userId: payload.userId, name: payload.name };
+    req.user = {
+      userId: payload.userId,
+      name: payload.name,
+      //new line for household
+      householdId: payload.householdId,
+    };
     next();
   } catch (error) {
     throw new UnauthenticatedError("Authentication invalid");
