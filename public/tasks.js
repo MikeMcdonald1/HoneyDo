@@ -30,6 +30,7 @@ export const handleTasks = () => {
         setToken(null);
         setHouseholdInfo(null);
         message.textContent = "You have been logged off.";
+        //  tasksTable.replaceChildren([tasksTableHeader]);
         tasksTable.replaceChildren(tasksTableHeader);
         showLoginRegister();
       } else if (e.target.classList.contains("editButton")) {

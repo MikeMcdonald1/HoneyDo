@@ -14,12 +14,12 @@ const TaskSchema = new mongoose.Schema(
       required: true,
       immutable: true,
     },
-    // householdId: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "Household",
-    //   required: true,
-    //   immutable: true,
-    // },
+    householdId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Household",
+      required: true,
+      immutable: true,
+    },
     category: {
       type: String,
       enum: ["tasks", "errands", "chores", "random"],

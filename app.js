@@ -45,6 +45,7 @@ app.use("/api/v1/tasks", authenticateUser, taskRouter);
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
+// server listening on port
 const port = process.env.PORT || 3000;
 
 const start = async () => {

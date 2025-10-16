@@ -57,6 +57,7 @@ const login = async (req, res) => {
   }
 
   const token = user.createJWT();
+
   let household = null;
   if (user.householdId) {
     household = await Household.findById(user.householdId).lean();
