@@ -58,6 +58,7 @@ UserSchema.methods.createJWT = function () {
     }
   );
 };
+
 // method compares a user's login pass with the hashed pass store in the db, also uses bcrypt.compare
 UserSchema.methods.comparePassword = async function (candidatePassword) {
   const isMatch = await bcrypt.compare(candidatePassword, this.password);

@@ -6,7 +6,6 @@ const getAllTasks = async (req, res) => {
   const tasks = await Task.find({ householdId: req.user.householdId }).sort(
     "createdAt"
   );
-  console.log(req.user.householdId);
 
   res.status(StatusCodes.OK).json({ tasks, count: tasks.length });
 };
