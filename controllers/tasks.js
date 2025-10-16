@@ -3,7 +3,6 @@ const { StatusCodes } = require("http-status-codes");
 const { BadRequestError, NotFoundError } = require("../errors");
 
 const getAllTasks = async (req, res) => {
-  // const tasks = await Task.find({ createdBy: req.user.userId }).sort(
   const tasks = await Task.find({ householdId: req.user.householdId }).sort(
     "createdAt"
   );
@@ -14,14 +13,12 @@ const getAllTasks = async (req, res) => {
 
 const getTask = async (req, res) => {
   const {
-    // user: { userId },
     user: { householdId },
     params: { id: taskId },
   } = req;
 
   const task = await Task.findOne({
     _id: taskId,
-    // createdBy: userId,
     householdId,
   });
   if (!task) {
@@ -39,18 +36,18 @@ const createTask = async (req, res) => {
 
 const updateTask = async (req, res) => {
   const {
-    // body: { company, position },
-    // user: { userId },
+    body: { title, category, status },
     user: { householdId },
     params: { id: taskId },
   } = req;
 
-  // if (company === "" || position === "") {
-  //   throw new BadRequestError("Company or Position fields cannot be empty");
-  // }
+  if (!title || !category || !status) {
+    throw new BadRequestError(
+      "Title, category, and status fields cannot be empty"
+    );
+  }
 
   const task = await Task.findOneAndUpdate(
-    // { _id: taskId, createdBy: userId },
     { _id: taskId, householdId },
     req.body,
     { new: true, runValidators: true }
@@ -62,19 +59,14 @@ const updateTask = async (req, res) => {
   res.status(StatusCodes.OK).json({ task });
 };
 
-// Should I change NotFoundError message to "task doesn't belong to user" or something?
-
 const deleteTask = async (req, res) => {
   const {
-    // body: { company, position },
-    // user: { userId },
     user: { householdId },
     params: { id: taskId },
   } = req;
 
   const task = await Task.findOneAndDelete({
     _id: taskId,
-    // createdBy: userId,
     householdId,
   });
   if (!task) {

@@ -13,8 +13,6 @@ const register = async (req, res) => {
 
   let household = null;
 
-  // if there is a joinCode, try to find existing household, if found assign household to newly created user
-  // otherwise create household
   if (joinCode) {
     household = await Household.findOne({
       joinCode: joinCode,

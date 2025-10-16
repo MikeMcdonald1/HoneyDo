@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* text-align: center; */
+}
+
+:root {
+  --bg-primary: #2f1400;
+  --bg-secondary: #7b3f00;
+  --fg-primary: #fff2d6;
+  --fg-secondary: #c75a00;
+  --accent: #e8851f;
+  --accent2: #f0a21c;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--fg-primary);
+  padding: 5rem 6rem;
+}
+
+/* media query that changes padding for responsiveness */
+/* use accent colors on buttons, make tasks have background color with margin bottom for spacing */
+/* buttons on tasks should be smaller, make add task and log off larger */
+/* use color to indicate purpose and imporance, add task green, log off red, etc (primarcy action, netural action, destructive action all different colors, edit neutral, add task primary, log off and delete destructive */
+/* remove centered text, add fixed width to tasks, make table full width of its container*/
+
+h1 {
+  text-align: center;
+}
+
+#tasks {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#household-summary {
+  margin-bottom: 1rem;
+}
+
+#tasks-table {
+  margin: auto;
+  width: 100%;
+}
+
+button {
+  padding: 8px 16px;
+  border-radius: 5px;
+}
+
+th {
+  text-align: left;
+}
+
+#tasks-table-header {
+  border-bottom: 1px solid var(--fg-primary);
+  /* background-color: red; */
+}
