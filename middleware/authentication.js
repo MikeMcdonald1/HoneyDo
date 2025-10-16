@@ -18,7 +18,6 @@ const auth = async (req, res, next) => {
     req.user = {
       userId: payload.userId,
       name: payload.name,
-      //new line for household
       householdId: payload.householdId,
     };
     next();
