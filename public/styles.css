@@ -211,8 +211,114 @@ label {
   font-size: 1.25rem;
 }
 
-/* media query that changes padding for responsiveness */
-/* use accent colors on buttons, make tasks have background color with margin bottom for spacing */
-/* buttons on tasks should be smaller, make add task and log off larger */
-/* use color to indicate purpose and imporance, add task green, log off red, etc (primarcy action, netural action, destructive action all different colors, edit neutral, add task primary, log off and delete destructive */
-/* remove centered text, add fixed width to tasks, make table full width of its container*/
+/* media queries */
+@media (max-width: 768px) {
+  body {
+    padding: 3rem 2rem;
+  }
+
+  .main-heading {
+    font-size: 3.25rem;
+  }
+
+  form {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .form-buttons button {
+    width: 100%;
+  }
+
+  #tasks {
+    align-items: stretch;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  #tasks-table {
+    min-width: 540px;
+  }
+
+  #tasks-table-header {
+    font-size: 1.5rem;
+  }
+
+  .row-html {
+    font-size: 1.25rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+  }
+
+  label {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 2rem 1rem;
+  }
+
+  .main-heading {
+    font-size: 2.75rem;
+    margin: 1.5rem 0;
+  }
+
+  p {
+    font-size: 1.1rem;
+  }
+
+  label {
+    font-size: 1rem;
+  }
+
+  #login-register {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  button,
+  #table-page-buttons button {
+    width: 100%;
+  }
+
+  #table-page-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+
+  #tasks-table {
+    min-width: 460px;
+  }
+
+  #tasks-table-header {
+    font-size: 1.25rem;
+  }
+
+  .row-html {
+    font-size: 1.1rem;
+  }
+
+  form {
+    gap: 1rem;
+  }
+
+  .form-inputs {
+    gap: 0.75rem;
+  }
+
+  .radio {
+    align-items: flex-start;
+  }
+}
