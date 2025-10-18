@@ -14,41 +14,94 @@
 }
 
 body {
-  /* background-color: var(--bg-secondary); */
   background-image: linear-gradient(to bottom right, #2f1400, #7b3f00);
+  background-attachment: fixed;
+  background-size: cover;
   color: var(--fg-primary);
   padding: 5rem 6rem;
 }
 
 form {
   display: grid;
-  justify-content: center;
-  align-items: center;
+  gap: 1.25rem;
+  padding: 2rem;
+  margin: 1.5rem auto;
+  width: min(100%, 420px);
+  background: rgba(255, 242, 214, 0.08);
+  border: 1px solid rgba(240, 162, 28, 0.35);
+  border-radius: 18px;
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4px);
+}
+
+form > div:not(.form-buttons) {
+  display: grid;
+  gap: 0.5rem;
+}
+
+form input,
+form select {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid rgba(240, 162, 28, 0.45);
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--fg-primary);
+}
+
+form input::placeholder {
+  color: rgba(255, 242, 214, 0.7);
+}
+
+form input:focus,
+form select:focus {
+  outline: 2px solid var(--accent2);
+  outline-offset: 1px;
+}
+
+form input:not([type="radio"]),
+form select {
+  width: 100%;
 }
 
 .form-buttons {
   display: flex;
   justify-content: center;
+  gap: 1rem;
 }
 
 .form-inputs {
   display: grid;
-  align-items: stretch;
+  gap: 1rem;
 }
 
-input,
-select {
-  width: 100%;
+.form-inputs > div {
+  display: grid;
+  gap: 0.5rem;
 }
 
-/* .radio {
-} */
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.radio + .radio {
+  margin-top: 0.5rem;
+}
+
+.radio input {
+  width: auto;
+  accent-color: var(--accent2);
+}
 
 /* for all buttons */
 button {
   padding: 8px 16px;
   border-radius: 5px;
-  font-family: "Kalam", cursive;
+  font-family: "Quicksand", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -62,18 +115,15 @@ button {
   margin: 3rem;
   text-align: center;
   text-shadow: -1px 3px 40px var(--accent);
-  /* text-shadow: -1px 3px 1px var(--accent); */
 }
 
 /* STYLING FOR THE LOGIN/REGISTER SCREEN */
 #login-register {
   margin: 2rem 0;
-  background-color: red;
-  display: flex;
+  /* background-color: red; */
+  /* display: flex !important;
   justify-content: center;
-  align-items: center;
-  align-self: center;
-  align-content: center;
+  align-items: center; */
 }
 
 table,
@@ -81,16 +131,14 @@ th,
 td {
   border: 1px solid var(--accent);
   border-style: ridge;
-  /* border-collapse: collapse; */
   border-radius: 3px;
   padding: 0.5rem;
-  box-shadow: ;
 }
 
 /* STYLING FOR THE TASKS TABLE SCREEN */
 /* for the household name and join code */
 .household-container {
-  font-family: "Kalam", cursive;
+  font-family: "Quicksand", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 1.5rem;
@@ -99,7 +147,7 @@ td {
 
 /* for table headers */
 #tasks-table-header {
-  font-family: "Playwrite US Trad", cursive;
+  font-family: "Quicksand", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -118,13 +166,12 @@ td {
 #tasks-table {
   margin: auto;
   width: 100%;
-  /* background-color: red; */
   margin-bottom: 2rem;
 }
 
 /* for each task entry row */
 .row-html {
-  font-family: "Kalam", cursive;
+  font-family: "Quicksand", sans-serif;
   font-weight: 300;
   font-style: normal;
   font-size: 2rem;
@@ -132,7 +179,7 @@ td {
 
 /* for all messages */
 p {
-  font-family: "Kalam", cursive;
+  font-family: "Quicksand", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 1.5rem;
@@ -140,7 +187,7 @@ p {
 
 /* for all labels */
 label {
-  font-family: "Kalam", cursive;
+  font-family: "Quicksand", sans-serif;
   font-weight: 300;
   font-style: normal;
   font-size: 1.25rem;

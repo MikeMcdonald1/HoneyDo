@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Outfit:wght@100..900&family=Playwrite+US+Trad:wght@100..400&family=Quicksand:wght@300..700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Outfit:wght@100..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     <title>Task List</title>
   </head>
 
@@ -59,22 +59,26 @@
           <input type="password" id="password2" />
         </div>
         <div>
-          <label for="createHousehold" class="radio">Create New Household</label>
-          <input
+          <label for="createHousehold" class="radio">
+            <input
             id="createHousehold"
             type="radio"
             name="household"
             value="createHousehold"
             checked
           />
-          <br>
-          <label for="joinHousehold" class="radio">Join Existing Household</label>
+            Create New Household
+          </label>
+          <br />
+          <label for="joinHousehold" class="radio"> 
           <input
             id="joinHousehold"
             type="radio"
             name="household"
             value="joinHousehold"
           />
+          Join Existing Household
+        </label> 
         </div>
         <div id="joinHouseholdTextContainer" hidden>       
           <label
