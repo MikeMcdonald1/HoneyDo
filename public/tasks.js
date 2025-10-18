@@ -72,13 +72,13 @@ export const showTasks = async () => {
           // create an empty table row that is ready to fill
           let rowEntry = document.createElement("tr");
 
-          let editButton = `<td><button type="button" class="editButton" data-id=${data.tasks[i]._id}>edit</button></td>`;
+          let editButton = `<td><button type="button" class="editButton" data-id=${data.tasks[i]._id}>Edit</button></td>`;
           // step 2 - create the actual delete button
-          let deleteButton = `<td><button type="button" class="deleteButton" data-id=${data.tasks[i]._id}>delete</button></td>`;
+          let deleteButton = `<td><button type="button" class="deleteButton" data-id=${data.tasks[i]._id}>Delete</button></td>`;
           let rowHTML = `
-            <td>${data.tasks[i].title}</td>
-            <td>${data.tasks[i].category}</td>
-            <td>${data.tasks[i].status}</td>
+            <td class="row-html">${data.tasks[i].title}</td>
+            <td class="row-html">${data.tasks[i].category}</td>
+            <td class="row-html"">${data.tasks[i].status}</td>
             <div>${editButton}${deleteButton}</div>`;
 
           rowEntry.innerHTML = rowHTML;
