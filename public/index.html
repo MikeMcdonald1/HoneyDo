@@ -5,19 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Outfit:wght@100..900&family=Playwrite+US+Trad:wght@100..400&family=Quicksand:wght@300..700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
     <title>Task List</title>
   </head>
 
   <body>
-    <h1>Task List</h1>
+    <h1 class="main-heading">HoneyDo</h1>
+
     <hr />
     <p id="message"></p>
     <hr />
 
     <!-- Login -->
     <div id="login-register" style="display: none">
-      <button type="button" id="login">login</button>
-      <button type="button" id="register">register</button>
+      <button type="button" id="login">Login</button>
+      <button type="button" id="register">Register</button>
     </div>
 
     <div id="login-div" style="display: none">
@@ -30,9 +34,10 @@
           <label for="password">password:</label>
           <input type="password" id="password" />
         </div>
-
-        <button type="button" id="login-button">login</button>
-        <button type="button" id="login-cancel">cancel</button>
+    <div class="form-buttons">
+        <button type="button" id="login-button">Login</button>
+        <button type="button" id="login-cancel">Cancel</button>
+    </div>  
       </form>
     </div>
 
@@ -54,7 +59,7 @@
           <input type="password" id="password2" />
         </div>
         <div>
-          <label for="createHousehold">Create New Household</label>
+          <label for="createHousehold" class="radio">Create New Household</label>
           <input
             id="createHousehold"
             type="radio"
@@ -63,7 +68,7 @@
             checked
           />
           <br>
-          <label for="joinHousehold">Join Existing Household</label>
+          <label for="joinHousehold" class="radio">Join Existing Household</label>
           <input
             id="joinHousehold"
             type="radio"
@@ -73,7 +78,7 @@
         </div>
         <div id="joinHouseholdTextContainer" hidden>       
           <label
-          for="joinHouseholdText">Household Code</lable>
+          for="joinHouseholdText">Household Code:</lable>
           <input
           type="text"
           id="joinHouseholdText"
@@ -81,32 +86,39 @@
           placeholder="e.g. 5NPQ42"
         />
       </div>
-        <button type="button" id="register-button">register</button>
-        <button type="button" id="register-cancel">cancel</button>
+      <div class="form-buttons">
+        <button type="button" id="register-button">Register</button>
+        <button type="button" id="register-cancel">Cancel</button>
+      </div>
       </form>
     </div>
 
      <!-- Tasks -->
     <div id="tasks" style="display: none">
-          <p id="household-summary">
+      <div class="household-container">
+      <p id="household-summary">
       <span id="household-name"></span>
       <span aria-hidden="true">|</span>
       Join Code: <span id="household-code"></span>
       <p id="tasks-message"></p>
+      </div>
+
       <table id="tasks-table">
         <tr id="tasks-table-header">
           <th>Title</th>
           <th>Category</th>
           <th>Status</th>
-          <th colspan="2"></th>
+          <th colspan="2">Edit</th>
+          <th colspan="2">Delete</th>
         </tr>
       </table>
-      <button type="button" id="add-task">add task</button>
-      <button type="button" id="logoff">log off</button>
+      <button type="button" id="add-task">Add Task</button>
+      <button type="button" id="logoff">Log Off</button>
     </div>
 
     <div id="edit-task" style="display: none">
       <form>
+        <div class="form-inputs">
         <div>
           <label for="title">Title:</label>
           <input type="text" id="title" />
@@ -131,12 +143,13 @@
             <option value="skipped">skipped</option>
           </select>
         </div>
-
-        <button type="button" id="adding-task">add</button>
-        <button type="button" id="edit-cancel">cancel</button>
+      </div>
+        <div class="form-buttons">
+        <button type="button" id="adding-task">Add</button>
+        <button type="button" id="edit-cancel">Cancel</button>
+        </div>
       </form>
     </div>
 
     <script src="./index.js" type="module"></script>
-  </body>
 </html>

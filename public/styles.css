@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* text-align: center; */
 }
 
 :root {
@@ -15,19 +14,98 @@
 }
 
 body {
-  background-color: var(--bg-primary);
+  /* background-color: var(--bg-secondary); */
+  background-image: linear-gradient(to bottom right, #2f1400, #7b3f00);
   color: var(--fg-primary);
   padding: 5rem 6rem;
 }
 
-/* media query that changes padding for responsiveness */
-/* use accent colors on buttons, make tasks have background color with margin bottom for spacing */
-/* buttons on tasks should be smaller, make add task and log off larger */
-/* use color to indicate purpose and imporance, add task green, log off red, etc (primarcy action, netural action, destructive action all different colors, edit neutral, add task primary, log off and delete destructive */
-/* remove centered text, add fixed width to tasks, make table full width of its container*/
+form {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
 
-h1 {
+.form-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.form-inputs {
+  display: grid;
+  align-items: stretch;
+}
+
+input,
+select {
+  width: 100%;
+}
+
+/* .radio {
+} */
+
+/* for all buttons */
+button {
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-family: "Kalam", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* used for main HoneyDo logo */
+.main-heading {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 5rem;
+  margin: 3rem;
   text-align: center;
+  text-shadow: -1px 3px 40px var(--accent);
+  /* text-shadow: -1px 3px 1px var(--accent); */
+}
+
+/* STYLING FOR THE LOGIN/REGISTER SCREEN */
+#login-register {
+  margin: 2rem 0;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+}
+
+table,
+th,
+td {
+  border: 1px solid var(--accent);
+  border-style: ridge;
+  /* border-collapse: collapse; */
+  border-radius: 3px;
+  padding: 0.5rem;
+  box-shadow: ;
+}
+
+/* STYLING FOR THE TASKS TABLE SCREEN */
+/* for the household name and join code */
+.household-container {
+  font-family: "Kalam", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* for table headers */
+#tasks-table-header {
+  font-family: "Playwrite US Trad", cursive;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 2rem;
+  border-bottom: 1px solid var(--fg-primary);
+  text-align: left;
 }
 
 #tasks {
@@ -37,25 +115,39 @@ h1 {
   align-items: center;
 }
 
-#household-summary {
-  margin-bottom: 1rem;
-}
-
 #tasks-table {
   margin: auto;
   width: 100%;
-}
-
-button {
-  padding: 8px 16px;
-  border-radius: 5px;
-}
-
-th {
-  text-align: left;
-}
-
-#tasks-table-header {
-  border-bottom: 1px solid var(--fg-primary);
   /* background-color: red; */
+  margin-bottom: 2rem;
 }
+
+/* for each task entry row */
+.row-html {
+  font-family: "Kalam", cursive;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 2rem;
+}
+
+/* for all messages */
+p {
+  font-family: "Kalam", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5rem;
+}
+
+/* for all labels */
+label {
+  font-family: "Kalam", cursive;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 1.25rem;
+}
+
+/* media query that changes padding for responsiveness */
+/* use accent colors on buttons, make tasks have background color with margin bottom for spacing */
+/* buttons on tasks should be smaller, make add task and log off larger */
+/* use color to indicate purpose and imporance, add task green, log off red, etc (primarcy action, netural action, destructive action all different colors, edit neutral, add task primary, log off and delete destructive */
+/* remove centered text, add fixed width to tasks, make table full width of its container*/
