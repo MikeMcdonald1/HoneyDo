@@ -77,7 +77,7 @@ export const showAddEdit = async (taskId) => {
     title.value = "";
     category.value = "";
     status.value = "";
-    addingTask.textContent = "Add";
+    addingTask.textContent = "add";
     message.textContent = "";
 
     setDiv(addEditDiv);
@@ -98,7 +98,7 @@ export const showAddEdit = async (taskId) => {
         title.value = data.task.title;
         category.value = data.task.category;
         status.value = data.task.status;
-        addingTask.textContent = "Update";
+        addingTask.textContent = "update";
         message.textContent = "";
         addEditDiv.dataset.id = taskId;
 
