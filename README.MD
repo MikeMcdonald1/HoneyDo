@@ -1,56 +1,69 @@
-#### Setup
+# HoneyDo
 
-```bash
-npm install && npm start
-```
+A productivity companion that turns your household to-do list into a sweet HoneyDo co-op.
+Team up with family, friends, or roommates to create tasks, track progress, and stay organized.
 
-#### Database Connection
+"Honey, did you HoneyDo it?"
+"You know I HoneyDid! And now...it's HoneyDone!" har har har
 
-1. Import connect.js
-2. Invoke in start()
-3. Setup .env in the root
-4. Add MONGO_URI with correct value
+## Table of Contents
 
-#### Routers
+[HoneyDo](#honeydo)
+[Table of Contents](#table-of-contents)
+[Project Description](#project-description)
+[Features](#features)
+[Installation](#installation)
+[Usage](#usage)
 
-- auth.js
-- jobs.js
+## Project Description
 
-#### User Model
+HoneyDo helps busy households manage tasks, chores, and errands all in one place.
+Managing a shared life with someone can be challenging. The purpose of this app is to
+put all of those non-negotiable things that absolutely need to be done in one place so
+you can create a happy and responsible life together.
 
-Email Validation Regex
+## Features
 
-```regex
-/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-```
+- Shared team dashboard showing everything that needs to be done within a household
+- The ability to create a new household or invite multiple users to an existing household
+- Create, update, and complete tasks, errands, and chores
+- Secure authentication and persistent storage powered by MongoDB & JWT
+- Basic security middleware (helmet, CORS, XSS sanitization, rate limiting)
+- A calm, honey-toned theme with readable typography and balance
+- A responsive UI designed for desktop, tablet, and mobile devices
 
-#### Register User
+Coming soon:
 
-- Validate - name, email, password - with Mongoose
-- Hash Password (with bcryptjs)
-- Save User
-- Generate Token
-- Send Response with Token
+- Sorting and filtering (by creator, category, status, newest)
+- Assign tasks to specific users within a household
+- Create role-based permissions to authorize only certain users for full CRUD capability
+- Ability to create tasks with custom category names
+- Add comments and attachments to tasks
+- Recurring tasks and schedules
+- Calendar integration with daily, weekly, and monthly options
 
-#### Login User
+## Installation
 
-- Validate - email, password - in controller
-- If email or password is missing, throw BadRequestError
-- Find User
-- Compare Passwords
-- If no user or password does not match, throw UnauthenticatedError
-- If correct, generate Token
-- Send Response with Token
+1. Clone the repository
 
-#### Mongoose Errors
+2. Install dependencies:
+   `npm install`
 
-- Validation Errors
-- Duplicate (Email)
-- Cast Error
+3. Create a `.env` file in the project root and add the required keys:
 
-#### Security
+   `PORT=3000`
+   `MONGO_URI=your_mongodb_connection_string`
+   `JWT_SECRET=super_secret_honeydo_key`
 
-- helmet
-- cors
-- xss-clean
-- express-rate-limit
+   `MONGO_URI`: Grab this from your MongoDB Atlas cluster or local instance
+   `JWT_SECRET`: This should be a long, random string, preferably created by a random string generator
+
+4. Launch the development server
+   `npm start`
+
+## Usage
+
+1. Sign up or log in to your HoneyDo account
+2. Create a new list of tasks, errands, and chores
+3. Invite your family, friends, or roommates with your join code
+4. Mark tasks complete, edit existing tasks, or create new tasks
