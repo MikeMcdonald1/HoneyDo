@@ -1,5 +1,7 @@
 # HoneyDo
 
+![Image_Alt](https://github.com/MikeMcdonald1/HoneyDo/blob/1e0cb6861aa6bf433444d37e6289363cec581b1c/honeydo1.png)
+
 A productivity companion that turns your household to-do list into a sweet HoneyDo co-op.
 Team up with family, friends, or roommates to create tasks, track progress, and stay organized.
 
