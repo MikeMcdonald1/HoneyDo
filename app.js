@@ -48,13 +48,39 @@ app.use(errorHandlerMiddleware);
 // server listening on port
 const port = process.env.PORT || 3000;
 
+// const start = async () => {
+//   try {
+//     console.log(
+//       "MONGO_URI using:",
+//       (process.env.MONGO_URI || "").replace(/:\/\/.*?:.*?@/, "://<redacted>@")
+//     );
+//     await connectDB(process.env.MONGO_URI);
+//     app.listen(port, () =>
+//       console.log(`Server is listening on port ${port}...`)
+//     );
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+let mongoURL = process.env.MONGO_URI;
+if (process.env.NODE_ENV == "test") {
+  mongoURL = process.env.MONGO_URI_TEST;
+}
+
 const start = async () => {
   try {
     console.log(
       "MONGO_URI using:",
-      (process.env.MONGO_URI || "").replace(/:\/\/.*?:.*?@/, "://<redacted>@")
+      // (process.env.MONGO_URI || "")
+      //   .replace(
+      //     /:\/\/.*?:.*?@/,
+      //     "://<redacted>@"
+      //   )
+      (mongoURL || "").replace(/:\/\/.*?:.*?@/, "://<redacted>@")
     );
-    await connectDB(process.env.MONGO_URI);
+    // await connectDB(process.env.MONGO_URI);
+    await connectDB(mongoURL);
     app.listen(port, () =>
       console.log(`Server is listening on port ${port}...`)
     );
@@ -64,3 +90,5 @@ const start = async () => {
 };
 
 start();
+
+const store = MongoStore.create({ mongoUrl: mongoURL });
