@@ -19,6 +19,17 @@ const authenticateUser = require("./middleware/authentication");
 const authRouter = require("./routes/auth");
 const taskRouter = require("./routes/tasks");
 
+// API
+app.get("/multiply", (req, res) => {
+  const result = req.query.first * req.query.second;
+  if (result.isNaN) {
+    result = "NaN";
+  } else if (result == null) {
+    result = "null";
+  }
+  res.json({ result: result });
+});
+
 // error handler
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
@@ -48,6 +59,8 @@ app.use(errorHandlerMiddleware);
 // server listening on port
 const port = process.env.PORT || 3000;
 
+// ORIGINAL START
+
 // const start = async () => {
 //   try {
 //     console.log(
@@ -67,21 +80,34 @@ let mongoURL = process.env.MONGO_URI;
 if (process.env.NODE_ENV == "test") {
   mongoURL = process.env.MONGO_URI_TEST;
 }
+// FIRST FOR TESTING START WITH mongoURL
 
-const start = async () => {
+// const start = async () => {
+//   try {
+//     console.log(
+//       "MONGO_URI using:",
+//       // (process.env.MONGO_URI || "")
+//       //   .replace(
+//       //     /:\/\/.*?:.*?@/,
+//       //     "://<redacted>@"
+//       //   )
+//       (mongoURL || "").replace(/:\/\/.*?:.*?@/, "://<redacted>@")
+//     );
+//     // await connectDB(process.env.MONGO_URI);
+//     await connectDB(mongoURL);
+//     app.listen(port, () =>
+//       console.log(`Server is listening on port ${port}...`)
+//     );
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// SECOND FOR TESTING START
+const start = () => {
   try {
-    console.log(
-      "MONGO_URI using:",
-      // (process.env.MONGO_URI || "")
-      //   .replace(
-      //     /:\/\/.*?:.*?@/,
-      //     "://<redacted>@"
-      //   )
-      (mongoURL || "").replace(/:\/\/.*?:.*?@/, "://<redacted>@")
-    );
-    // await connectDB(process.env.MONGO_URI);
-    await connectDB(mongoURL);
-    app.listen(port, () =>
+    require("./db/connect")(mongoURL);
+    return app.listen(port, () =>
       console.log(`Server is listening on port ${port}...`)
     );
   } catch (error) {
@@ -91,4 +117,8 @@ const start = async () => {
 
 start();
 
-const store = MongoStore.create({ mongoUrl: mongoURL });
+module.exports = { app };
+
+// start();
+
+// const store = MongoStore.create({ mongoUrl: mongoURL });
