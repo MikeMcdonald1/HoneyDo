@@ -19,8 +19,8 @@ Team up with family, friends, or roommates to create tasks, track progress, and 
 
 ## Project Description
 
-HoneyDo helps busy households manage tasks, chores, and errands all in one place.
-Managing a shared life with someone can be challenging. The purpose of this app is to
+Managing a shared life with someone can be challenging. HoneyDo helps busy households 
+manage tasks, chores, and errands all in one place. The purpose of this app is to
 put all of those non-negotiable things that absolutely need to be done in one place so
 you can create a happy and responsible life together.
 
