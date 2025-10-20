@@ -1,7 +1,7 @@
 const Task = require("../models/Task");
 const { seed_db, testUserPassword } = require("../util/seed_db");
 const get_chai = require("../util/get_chai");
-const app = require("../app");
+const { app } = require("../app");
 
 describe("task CRUD", function () {
   before(async () => {
