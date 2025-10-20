@@ -19,7 +19,7 @@ const authenticateUser = require("./middleware/authentication");
 const authRouter = require("./routes/auth");
 const taskRouter = require("./routes/tasks");
 
-// API
+// API TESTING
 app.get("/multiply", (req, res) => {
   const result = req.query.first * req.query.second;
   if (result.isNaN) {
@@ -48,6 +48,16 @@ app.use(cors());
 app.use(xss());
 
 app.use(express.static("public"));
+
+// FUNCTION TESTING FOR RENDERED HTML
+app.use((req, res, next) => {
+  if (req.path == "/multiply") {
+    res.set("Content-Type", "application/json");
+  } else {
+    res.set("Content-Type", "text/html");
+  }
+  next();
+});
 
 // routes
 app.use("/api/v1/auth", authRouter);
@@ -80,7 +90,7 @@ let mongoURL = process.env.MONGO_URI;
 if (process.env.NODE_ENV == "test") {
   mongoURL = process.env.MONGO_URI_TEST;
 }
-// FIRST FOR TESTING START WITH mongoURL
+// FIRST START FOR TESTING WITH mongoURL
 
 // const start = async () => {
 //   try {
@@ -103,7 +113,7 @@ if (process.env.NODE_ENV == "test") {
 //   }
 // };
 
-// SECOND FOR TESTING START
+// SECOND START FOR TESTING
 const start = () => {
   try {
     require("./db/connect")(mongoURL);
