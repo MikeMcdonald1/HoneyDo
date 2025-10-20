@@ -1,4 +1,4 @@
-const Job = require("../models/Job");
+const Task = require("../models/Task");
 const User = require("../models/User");
 const faker = require("@faker-js/faker").fakerEN_US;
 const FactoryBot = require("factory-bot");
@@ -8,9 +8,9 @@ const testUserPassword = faker.internet.password();
 const factory = FactoryBot.factory;
 const factoryAdapter = new FactoryBot.MongooseAdapter();
 factory.setAdapter(factoryAdapter);
-factory.define("job", Job, {
+factory.define("task", Task, {
   company: () => faker.company.name(),
-  position: () => faker.person.jobTitle(),
+  position: () => faker.person.taskTitle(),
   status: () =>
     ["interview", "declined", "pending"][Math.floor(3 * Math.random())], // random one of these
 });
@@ -24,10 +24,10 @@ const seed_db = async () => {
   let testUser = null;
   try {
     const mongoURL = process.env.MONGO_URI_TEST;
-    await Job.deleteMany({}); // deletes all job records
+    await Task.deleteMany({}); // deletes all task records
     await User.deleteMany({}); // and all the users
     testUser = await factory.create("user", { password: testUserPassword });
-    await factory.createMany("job", 20, { createdBy: testUser._id }); // put 30 job entries in the database.
+    await factory.createMany("task", 20, { createdBy: testUser._id }); // put 30 task entries in the database.
   } catch (e) {
     console.log("database error");
     console.log(e.message);
