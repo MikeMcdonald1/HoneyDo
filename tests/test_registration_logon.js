@@ -54,6 +54,7 @@ describe("tests for registration and logon", function () {
     expect(newUser).to.not.be.null;
   });
 
+  // Testing for logon
   it("should log the user on", async () => {
     const dataToPost = {
       email: this.user.email,
@@ -92,6 +93,7 @@ describe("tests for registration and logon", function () {
     expect(res.text).to.include(this.user.name);
   });
 
+  // Testing for logoff
   it("should log the user off", async () => {
     const { expect, request } = await get_chai();
     const dataToPost = { _csrf: this.csrfToken };
