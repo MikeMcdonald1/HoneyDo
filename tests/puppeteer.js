@@ -2,6 +2,7 @@ const puppeteer = require("puppeteer");
 require("../app");
 const { seed_db, testUserPassword } = require("../util/seed_db");
 const Task = require("../models/Task");
+const { expect } = await import("chai");
 
 let testUser = null;
 
@@ -12,7 +13,8 @@ describe("tasks-ejs puppeteer test", function () {
   before(async function () {
     this.timeout(10000);
     //await sleeper(5000)
-    browser = await puppeteer.launch({ headless: false, slowMo: 100 });
+    // browser = await puppeteer.launch({ headless: false, slowMo: 100 });
+    browser = await puppeteer.launch();
     page = await browser.newPage();
     await page.goto("http://localhost:3000");
   });
