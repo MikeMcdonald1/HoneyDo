@@ -4,12 +4,14 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "test": "NODE_ENV=test mocha tests/*.js --timeout 5000 --exit"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "connect-mongodb-session": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -27,6 +29,12 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.9"
+    "@faker-js/faker": "^10.1.0",
+    "chai": "^5.3.3",
+    "chai-http": "^5.1.2",
+    "factory-bot": "^6.3.1",
+    "mocha": "^11.7.4",
+    "nodemon": "^2.0.9",
+    "puppeteer": "^24.25.0"
   }
 }

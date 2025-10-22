@@ -19,6 +19,17 @@ const authenticateUser = require("./middleware/authentication");
 const authRouter = require("./routes/auth");
 const taskRouter = require("./routes/tasks");
 
+// API TESTING
+app.get("/multiply", (req, res) => {
+  const result = req.query.first * req.query.second;
+  if (result.isNaN) {
+    result = "NaN";
+  } else if (result == null) {
+    result = "null";
+  }
+  res.json({ result: result });
+});
+
 // error handler
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
@@ -38,6 +49,16 @@ app.use(xss());
 
 app.use(express.static("public"));
 
+// FUNCTION TESTING FOR RENDERED HTML
+app.use((req, res, next) => {
+  if (req.path == "/multiply") {
+    res.set("Content-Type", "application/json");
+  } else {
+    res.set("Content-Type", "text/html");
+  }
+  next();
+});
+
 // routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/tasks", authenticateUser, taskRouter);
@@ -48,14 +69,55 @@ app.use(errorHandlerMiddleware);
 // server listening on port
 const port = process.env.PORT || 3000;
 
-const start = async () => {
+// ORIGINAL START
+
+// const start = async () => {
+//   try {
+//     console.log(
+//       "MONGO_URI using:",
+//       (process.env.MONGO_URI || "").replace(/:\/\/.*?:.*?@/, "://<redacted>@")
+//     );
+//     await connectDB(process.env.MONGO_URI);
+//     app.listen(port, () =>
+//       console.log(`Server is listening on port ${port}...`)
+//     );
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+let mongoURL = process.env.MONGO_URI;
+if (process.env.NODE_ENV == "test") {
+  mongoURL = process.env.MONGO_URI_TEST;
+}
+// FIRST START FOR TESTING WITH mongoURL
+
+// const start = async () => {
+//   try {
+//     console.log(
+//       "MONGO_URI using:",
+//       // (process.env.MONGO_URI || "")
+//       //   .replace(
+//       //     /:\/\/.*?:.*?@/,
+//       //     "://<redacted>@"
+//       //   )
+//       (mongoURL || "").replace(/:\/\/.*?:.*?@/, "://<redacted>@")
+//     );
+//     // await connectDB(process.env.MONGO_URI);
+//     await connectDB(mongoURL);
+//     app.listen(port, () =>
+//       console.log(`Server is listening on port ${port}...`)
+//     );
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// SECOND START FOR TESTING
+const start = () => {
   try {
-    console.log(
-      "MONGO_URI using:",
-      (process.env.MONGO_URI || "").replace(/:\/\/.*?:.*?@/, "://<redacted>@")
-    );
-    await connectDB(process.env.MONGO_URI);
-    app.listen(port, () =>
+    require("./db/connect")(mongoURL);
+    return app.listen(port, () =>
       console.log(`Server is listening on port ${port}...`)
     );
   } catch (error) {
@@ -64,3 +126,9 @@ const start = async () => {
 };
 
 start();
+
+module.exports = { app };
+
+// start();
+
+// const store = MongoStore.create({ mongoUrl: mongoURL });
